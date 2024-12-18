@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telemedicine Application</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .btn {
+      padding: 0.7em 1.5em;
+      background-color: #e74c3c;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #c0392b;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #3498db;
+      padding: 1em;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links li {
+      margin: 0 1em;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.5em 1em;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: white;
+      color: #3498db;
+      border-radius: 25px;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5em;
+    }
+
+    #hero {
+      background: linear-gradient(rgba(52, 152, 219, 0.8), rgba(52, 152, 219, 0.8)), url('https://placekitten.com/1200/800') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 20px 20px;
+    }
+
+    .hero-text {
+      color: white;
+      max-width: 800px;
+      padding: 2em;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 0.5em;
+      font-weight: 700;
+    }
+
+    .hero-text p {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 1.5em;
+    }
+
+    .section {
+      padding: 4em 1em;
+      margin: 1em;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #3498db;
+      margin-bottom: 1em;
+      font-size: 2.5em;
+      text-align: center;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5em;
+      padding: 1em;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 2em;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .feature-item i {
+      font-size: 3em;
+      color: #3498db;
+      margin-bottom: 0.5em;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5em;
+      padding: 1em;
+    }
+    .contact-card {
+      background: #f8f9fa;
+      padding: 2em;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .contact-card i {
+      font-size: 2.5em;
+      color: #3498db;
+      margin-bottom: 0.5em;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2em;
+      padding: 1em;
+    }
+    footer {
+      background-color: #34495e;
+      color: white;
+      padding: 4em 2em;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2em;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-section {
+      padding: 1em;
+    }
+
+    .footer-section h3 {
+      color: #3498db;
+      margin-bottom: 1em;
+      font-size: 1.2em;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5em;
+    }
+
+    .footer-section a {
+      color: #ecf0f1;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-section a:hover {
+      color: #3498db;
+      transform: translateX(5px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1em;
+      margin-top: 1em;
+    }
+
+    .social-links a {
+      background: #2c3e50;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: #3498db;
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 3em;
+      padding-top: 2em;
+      border-top: 1px solid #2c3e50;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: #3498db;
+        flex-direction: column;
+        padding: 1em;
+        text-align: center;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        margin: 1em 0;
+      }
+
+      .section {
+        margin: 1em 0;
+        padding: 2em 1em;
+      }
+
+      .feature-item {
+        padding: 1.5em;
+      }
+
+      .contact-card {
+        padding: 1.5em;
+      }
+
+      .footer-section {
+        text-align: center;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text {
+        padding: 1em;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 1em;
+      }
+
+      .feature-item {
+        padding: 1em;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="logo (2).png" alt="Logo">
+      </div>
+      <button class="hamburger" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="signup.html" class="btn">Make Appointment</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Rest of the HTML content remains the same -->
+  <section id="hero">
+    <div class="hero-text">
+      <h1>Your Health, Your Way</h1>
+      <p>Connect with top healthcare professionals from the comfort of your home. Experience the future of medicine today.</p>
+      <a href="#features" class="btn">Explore Features</a>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p>At Medical Care, we are committed to providing exceptional healthcare services to our community. Our mission is to deliver comprehensive, patient-centered care that promotes health, wellness, and healing. We strive to be a beacon of hope and a trusted partner in your healthcare journey.</p>
+
+    <h2>Our Mission</h2>
+    <p>To enhance the quality of life for every patient through innovative medical practices, cutting-edge technology, and a dedicated team of healthcare professionals. We believe in treating the whole person, addressing not just physical health but also emotional and mental well-being.</p>
+
+    <h2>Our Values</h2>
+    <h3>Compassion:</h3> <p>We treat every patient with kindness, empathy, and respect.</p>
+    <h3>Excellence:</h3><p>We strive for the highest standards in medical care and patient satisfaction.</p>
+    <h3>Integrity:</h3><p>We uphold ethical practices and transparency in all our actions.</p> 
+    <h3>Innovation:</h3><p>We embrace advancements in medical science to provide the best possible care.</p> 
+    <h3>Collaboration:</h3><p>We work together as a team to ensure seamless and effective healthcare delivery.</p> 
+  </section>
+
+  <section id="features" class="section">
+    <h2>Our Features</h2>
+    <div class="features">
+      <div class="feature-item">
+        <i class="fas fa-user-md"></i>
+        <h3>Patient Management</h3>
+        <p>Efficiently manage patient records and history.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fas fa-calendar-alt"></i>
+        <h3>Doctor Scheduling</h3>
+        <p>Easily schedule and manage doctor availability.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fas fa-laptop-medical"></i>
+        <h3>Better Patient Care</h3>
+        <p>High-quality treatment and patient care.</p>
+      </div>
+      <div class="feature-item">
+        <i class="fas fa-lock"></i>
+        <h3>Secure Platform</h3>
+        <p>Your data is protected with state-of-the-art security.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="fas fa-phone-alt"></i>
+        <h3>Phone Support</h3>
+        <p>24/7 Healthcare Support</p>
+        <p>Emergency: <strong>+254-114-096-574</strong></p>
+        <p>General Inquiries: <strong>+254-114-096-574</strong></p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-envelope"></i>
+        <h3>Email Support</h3>
+        <p>General Inquiries: <strong>support@medicalcare.com</strong></p>
+        <p>Technical Support: <strong>tech@medicalcare.com</strong></p>
+        <p>Business Relations: <strong>partners@medicalcare.com</strong></p>
+      </div>
+      <div class="contact-card">
+        <i class="fas fa-map-marker-alt"></i>
+        <h3>Visit Us</h3>
+        <p><strong>Main Office:</strong></p>
+        <p>TOM MBOYA STREET, NAIROBI</p>
+        <p><strong>Operating Hours:</strong></p>
+        <p>Monday - Friday: 8:00 AM - 8:00 PM</p>
+        <p>Saturday: 9:00 AM - 5:00 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#features">Our Features</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Health Blog</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>For Patients</h3>
+        <ul>
+          
+          <li><a href="login.html">Book Appointment</a></li>
+          <li><a href="login.html">Patient Portal</a></li>
+          <li><a href="#">Insurance Information</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>For Healthcare Providers</h3>
+        <ul>
+          <li><a href="">Join Our Network</a></li>
+          <li><a href="drlogin.html">Doctor Portal</a></li>
+          <li><a href="">Provider Resources</a></li>
+          <li><a href="">Training Materials</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect With Us</h3>
+        <p>Stay updated with our latest news and updates</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p style="margin-top: 1em;">Download Our App:</p>
+        <div class="app-links" style="margin-top: 0.5em;">
+          <a href="#"><i class="fab fa-apple"></i> App Store</a>
+          <a href="#"><i class="fab fa-google-play"></i> Google Play</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Medical Care. All rights reserved.</p>
+      <p>HIPAA Compliant | Secure | Trusted by over 1 million patients</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove('active');
+      }
+    });
+
+    // Close mobile menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
